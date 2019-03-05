@@ -1,0 +1,35 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/employee-add']"><mat-icon>add</mat-icon></a>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="data" class="example-table"
+           matSort matSortActive="empl_name" matSortDisableClear matSortDirection="asc">
+
+      <!-- Employee Name Column -->
+      <ng-container matColumnDef="empl_name">
+        <th mat-header-cell *matHeaderCellDef>Employee Name</th>
+        <td mat-cell *matCellDef="let row">{{row.empl_name}}</td>
+      </ng-container>
+
+      <!-- Employee Surname Column -->
+      <ng-container matColumnDef="empl_surn">
+        <th mat-header-cell *matHeaderCellDef>Employee Surname</th>
+        <td mat-cell *matCellDef="let row">$ {{row.empl_surn}}</td>
+      </ng-container>
+
+       <!-- Employee Birthday Column -->
+       <ng-container matColumnDef="empl_birthday">
+        <th mat-header-cell *matHeaderCellDef>Employee Birthday</th>
+        <td mat-cell *matCellDef="let row">$ {{row.empl_birthday}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/employee-details/', row.id]"></tr>
+    </table>
+  </div>
+</div>
